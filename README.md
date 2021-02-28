@@ -1,5 +1,5 @@
 # distributed-jenkins-aws
-The end result of this project is to have a distributed Jenkins setup on a cloud platform that will function the backbone of a CI/CD pipeline for software development.
+The end result of this project is to have a distributed Jenkins setup on a cloud platform that will function as the backbone of a CI/CD pipeline for software development.
 
 This project uses several technologies used in the principles of DevOps. 
 - **AWS** : data-center platform to host the infrastructure.
