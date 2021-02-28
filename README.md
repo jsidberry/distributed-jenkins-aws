@@ -7,4 +7,4 @@ This project uses several technologies used in the principles of DevOps.
 - **Ansible** : configuration management (CM) used to install and configure the tools, like Jenkins, on the hosts machines
 - **Jenkins** : the main tool used for the continuous integration & continuous deployment/delivery CI/CD functionality
 
-I personally use this repo for initial builds for othe projects. 
+I personally use this repo for initial build-outs for other projects. 
