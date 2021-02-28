@@ -17,7 +17,11 @@ I personally use this repo for initial build-outs for other projects.
 - create a `backend` for an `s3` resource to host the `state` files
 - create the initial `providers` for the AWS resources
 - create the **networking**
-    1. create the `vpc` resource(s) per region
-    2. create the **internet gateway** (`igw`) resource per `vpc`
-    3. create the `subnet` resources for each **AZ** in each `vpc`
-- 
+    - create the `vpc` resource(s) per region
+    - create the **internet gateway** (`igw`) resource per `vpc`
+    - create the `subnet` resources for each **AZ** in each `vpc`
+    - create **VPC Peering** resources between VPCs
+    - create **Route Table** (`rtb`) resources 
+- create the **security groups** (`sg`) resources
+- create the VM resources (`ec2` instances)
+- create outputs for the IP address of the created VMs resources (`ec2`)
