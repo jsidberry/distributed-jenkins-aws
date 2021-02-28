@@ -4,6 +4,10 @@
 # .tfstate files
 *.tfstate
 *.tfstate.*
+.terraform/*
+
+# tf variables files may contain sensitive data
+*.tfvars 
 
 # Crash log files
 crash.log
