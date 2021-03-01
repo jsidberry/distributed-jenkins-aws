@@ -26,7 +26,7 @@ resource "aws_security_group" "lb-sg" {
   }
 }
 
-#Create SG for allowing TCP/8080 from * and TCP/22 from your IP in us-east-1
+#Create SG for allowing TCP/8080 from * and TCP/22 from your IP in us-east-2
 resource "aws_security_group" "jenkins-sg" {
   provider    = aws.region_master
   name        = "jenkins-sg"

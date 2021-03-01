@@ -1,4 +1,4 @@
-#Get Linux AMI ID using SSM Parameter endpoint in us-east-1
+#Get Linux AMI ID using SSM Parameter endpoint in us-east-2
 data "aws_ssm_parameter" "linuxAmi" {
   provider = aws.region_master
   name     = "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2"
@@ -13,7 +13,7 @@ data "aws_ssm_parameter" "linuxAmiOregon" {
 #Please note that this code expects SSH key pair to exist in default dir under 
 #users home directory, otherwise it will fail
 
-#Create key-pair for logging into EC2 in us-east-1
+#Create key-pair for logging into EC2 in us-east-2
 resource "aws_key_pair" "master-key" {
   provider   = aws.region_master
   key_name   = "jenkins"
@@ -27,7 +27,7 @@ resource "aws_key_pair" "worker-key" {
   public_key = file("~/.ssh/id_rsa.pub")
 }
 
-#Create and bootstrap EC2 in us-east-1
+#Create and bootstrap EC2 in us-east-2
 resource "aws_instance" "jenkins-master" {
   provider                    = aws.region_master
   ami                         = data.aws_ssm_parameter.linuxAmi.value
