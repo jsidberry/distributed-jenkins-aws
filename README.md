@@ -13,7 +13,7 @@ I personally use this repo for initial build-outs for other projects.
 
 ## terraform
 - setup your `variables.tf` file first for the initial variables
-- setup the `terraform.tfvars` file
+- setup the `terraform.tfvars` file, which is not in this repo. You must create or have this separate for security reasons.
 - create a `backend` for an `s3` resource to host the `state` files
 - create the initial `providers` for the AWS resources
 - create the **networking**
