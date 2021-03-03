@@ -26,12 +26,20 @@ resource "aws_vpc" "vpc_master_oregon" {
 resource "aws_internet_gateway" "igw" {
   provider = aws.region_master
   vpc_id   = aws_vpc.vpc_master.id
+  tags = {
+    Name = "master-vpc-jenkins"
+  }
+
 }
 
 #Create IGW in us-west-2
 resource "aws_internet_gateway" "igw-oregon" {
   provider = aws.region_worker
   vpc_id   = aws_vpc.vpc_master_oregon.id
+  tags = {
+    Name = "worker-vpc-jenkins"
+  }
+
 }
 
 #Get all available AZ's in VPC for master region
@@ -81,10 +89,12 @@ resource "aws_vpc_peering_connection" "useast2-uswest2" {
   peer_vpc_id = aws_vpc.vpc_master_oregon.id
   vpc_id      = aws_vpc.vpc_master.id
   peer_region = var.region_worker
-
+  tags = {
+    Name = "useast2-uswest2-vpc-jenkins"
+  }
 }
 
-#Accept VPC peering request in us-west-2 from us-east-1
+#Accept VPC peering request in us-west-2 from us-east-2
 resource "aws_vpc_peering_connection_accepter" "accept_peering" {
   provider                  = aws.region_worker
   vpc_peering_connection_id = aws_vpc_peering_connection.useast2-uswest2.id
