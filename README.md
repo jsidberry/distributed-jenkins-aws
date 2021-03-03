@@ -11,6 +11,9 @@ I personally use this repo for initial build-outs for other projects.
 
 # Notes
 
+## ansible
+Ensure there is a proper `ansible.cfg` file in the same directory as this code. Once is incluided in this repo, however, please review the details of the configuration file for security and functionality purposes.
+
 ## terraform
 - setup your `variables.tf` file first for the initial variables
 - setup the `terraform.tfvars` file, which is not in this repo. You must create or have this separate for security reasons.
