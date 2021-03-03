@@ -78,7 +78,7 @@ resource "aws_security_group" "jenkins-sg-oregon" {
     cidr_blocks = [var.external_ip]
   }
   ingress {
-    description = "Allow traffic from us-east-1"
+    description = "Allow traffic from us-east-2"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
