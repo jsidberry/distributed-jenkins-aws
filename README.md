@@ -23,5 +23,9 @@ I personally use this repo for initial build-outs for other projects.
     - create **VPC Peering** resources between VPCs
     - create **Route Table** (`rtb`) resources 
 - create the **security groups** (`sg`) resources
-- create the VM resources (`ec2` instances)
-- create outputs for the IP address of the created VMs resources (`ec2`)
+- create the VM resources (`ec2` **instances**)
+    - get the AMI ID using API form Systems Manager (SSM) 
+    - Deploying Key Pairs for Application Nodes
+    - Deploying Jenkins Master and Worker Instances
+    - create outputs for the IP address of the created VMs resources (`ec2`)
+        
