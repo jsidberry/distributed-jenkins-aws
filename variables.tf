@@ -19,3 +19,7 @@ variable "instance-type" {
   default = "t3.micro"
 }
 
+variable "profile" {
+  type    = string
+  default = "default"
+}
