@@ -5,10 +5,10 @@ variable "aws_region" {}
 variable "region_master" {}
 variable "region_worker" {}
 
-variable "external_ip" { 
-  type = string
-  default = "0.0.0.0/0" 
-  }
+variable "external_ip" {
+  type    = string
+  default = "0.0.0.0/0"
+}
 
 variable "workers-count" {
   type    = number

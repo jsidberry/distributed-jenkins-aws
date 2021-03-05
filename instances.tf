@@ -42,6 +42,14 @@ resource "aws_instance" "jenkins-master" {
   }
 
   depends_on = [aws_main_route_table_association.set-master-default-rt-assoc]
+
+  #Jenkins Master Provisioner:
+  provisioner "local-exec" {
+    command = <<EOF
+aws --profile ${var.profile} ec2 wait instance-status-ok --region ${var.region_master} --instance-ids ${self.id}
+ansible-playbook --extra-vars 'passed_in_hosts=tag_Name_${self.tags.Name}' ansible_templates/jenkins-master-sample.yml
+EOF
+  }
 }
 
 #Create EC2 in us-west-2
@@ -58,7 +66,15 @@ resource "aws_instance" "jenkins-worker-oregon" {
   tags = {
     Name = join("_", ["jenkins_worker_tf", count.index + 1])
   }
-  
+
   depends_on = [aws_main_route_table_association.set-worker-default-rt-assoc, aws_instance.jenkins-master]
+
+  #Jenkins Master Provisioner:
+  provisioner "local-exec" {
+    command = <<EOF
+aws --profile ${var.profile} ec2 wait instance-status-ok --region ${var.region_worker} --instance-ids ${self.id}
+ansible-playbook --extra-vars 'passed_in_hosts=tag_Name_${self.tags.Name}' ansible_templates/jenkins-worker-sample.yml
+EOF
+  }
 }
 

@@ -9,6 +9,10 @@ This project uses several technologies used in the principles of DevOps.
 
 I personally use this repo for initial build-outs for other projects. 
 
+# Requirements
+- AWS cli 
+- boto3 (`pip3 install boto3 --user`)
+
 # Notes
 
 ## ansible
