@@ -12,3 +12,7 @@ output "Jenkins-Worker-Public-IPs" {
 output "LB-DNS-NAME" {
   value = aws_lb.application-lb.dns_name
 }
+
+output "url" {
+  value = aws_route53_record.jenkins.fqdn
+}

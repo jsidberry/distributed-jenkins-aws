@@ -28,3 +28,8 @@ variable "webserver-port" {
   type    = number
   default = 80
 }
+
+variable "dns-name" {
+  type    = string
+  default = "juansidberry.link."
+}
