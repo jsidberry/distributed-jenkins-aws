@@ -23,3 +23,8 @@ variable "profile" {
   type    = string
   default = "default"
 }
+
+variable "webserver-port" {
+  type    = number
+  default = 80
+}

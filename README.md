@@ -36,3 +36,10 @@ Ensure there is a proper `ansible.cfg` file in the same directory as this code. 
     - Deploying Jenkins Master and Worker Instances
     - create outputs for the IP address of the created VMs resources (`ec2`)
         
+- use ANSIBLE ti install services on the Jenkins nodes
+- create an **Application Load Balancer (ALB)** and Routing Traffic to EC2 App (Jenkins) Node
+    - add the load balancer with `aws_lb` resource
+    - add the target group with `aws_lb_target_group` resource
+    - add add a listener with `aws_lb_listener` resource
+    - attach the `target_group` to the `alb` by adding `aws_lb_target_group_attachment` resource
+- Set up HTTPS and a Route 53 Record

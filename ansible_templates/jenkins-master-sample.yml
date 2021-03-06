@@ -4,7 +4,13 @@
   remote_user: ec2-user
   become_user: root
   tasks:
-    - name: install Git client
+    - name: install httpd
       yum:
-        name: git
+        name: httpd
         state: present
+        
+    - name: Start and Enable Apache
+      service:
+        name: httpd
+        state: started
+        enabled: yes
