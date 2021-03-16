@@ -44,7 +44,7 @@
         - wget
         - java-1.8.0-openjdk-devel
         - git
-   
+        
     - name: Get Jenkins CLI jar file
       vars:
         master: "{{ master_ip }}"
