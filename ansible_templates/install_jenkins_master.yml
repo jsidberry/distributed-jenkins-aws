@@ -13,7 +13,7 @@
         - wget
         - java-1.8.0-openjdk-devel
         - git
-      
+        
     - name: clone content-terraform-jenkins repo
       git:
         repo: https://github.com/linuxacademy/content-terraform-jenkins.git
@@ -23,12 +23,12 @@
       get_url:
         url: https://pkg.jenkins.io/redhat/jenkins.repo
         dest: /etc/yum.repos.d/jenkins.repo
-    
+
     - name: Import Jenkins Repo GPG key
       rpm_key:
         state: present
         key: https://pkg.jenkins.io/redhat/jenkins.io.key
- 
+
     - name: install Jenkins package
       yum:
         name: jenkins
@@ -38,25 +38,23 @@
       service: 
         name: jenkins 
         state: stopped
-   
+
     - name: Modify user shell Jenkins uses bash
       user:
         name: jenkins
         shell: /bin/bash
-    
-    
+
     - name: Delete Jenkins default dir
       file:
         state: absent
         path: /var/lib/jenkins
-    
+
     - name: Copy over cloned Jenkins /var/lib/jenkins
       copy:
         remote_src: yes
         src: /tmp/jenkins/jenkins
         dest: /var/lib
-        
-         
+
     - name: Restore Jenkins user ownership on /var/lib/jenkins
       file:
         path: /var/lib/jenkins
