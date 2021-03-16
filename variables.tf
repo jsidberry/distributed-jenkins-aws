@@ -12,7 +12,7 @@ variable "external_ip" {
 
 variable "workers-count" {
   type    = number
-  default = 1
+  default = 2
 }
 
 variable "instance-type" {
@@ -26,7 +26,7 @@ variable "profile" {
 
 variable "webserver-port" {
   type    = number
-  default = 80
+  default = 8080
 }
 
 variable "dns-name" {

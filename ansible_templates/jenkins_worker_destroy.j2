@@ -1,0 +1,11 @@
+[Unit]
+Description=De-register jenkins-worker-nodes from jenkins-master-node
+After=final.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStop=java -jar /home/ec2-user/jenkins-cli.jar -auth @/home/ec2-user/jenkins_auth -s http://{{ jenkins_master_private_ip }}:8080 delete-node {{ jenkins_worker_private_ip }}
+
+[Install]
+WantedBy=final.target
