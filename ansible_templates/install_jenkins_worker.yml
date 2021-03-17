@@ -82,18 +82,18 @@
         master: "{{ master_ip }}"
       shell: 'cat /home/ec2-user/node.xml | java -jar /home/ec2-user/jenkins-cli.jar -auth @/home/ec2-user/jenkins_auth -s http://{{ master }}:8080 create-node'
       
-    # # Jenkins Destroy Scripts  
-    # - name: Copy over Jenkins Worker Node destroy command
-    #   vars:
-    #     jenkins_master_private_ip: "{{ master_ip }}"
-    #     jenkins_worker_private_ip: "{{  }}"
-    #   template:
-    #     src: jenkins_worker_destroy.j2
-    #     dest: /etc/systemd/system/jenkinsworkerdestroy.service
-    #     owner: root
-    #     mode: '0755'
+    # Jenkins Destroy Scripts  
+    - name: Copy over Jenkins Worker Node destroy command
+      vars:
+        jenkins_master_private_ip: "{{ master_ip }}"
+        jenkins_worker_private_ip: "{{ worker_ip }}"
+      template:
+        src: jenkins_worker_destroy.j2
+        dest: /etc/systemd/system/jenkinsworkerdestroy.service
+        owner: root
+        mode: '0755'
 
-    # - name: Make sure a service is running
-    #   ansible.builtin.systemd:
-    #     state: started
-    #     name: jenkinsworkerdestroy
+    - name: Make sure a service is running
+      ansible.builtin.systemd:
+        state: started
+        name: jenkinsworkerdestroy
