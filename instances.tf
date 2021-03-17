@@ -71,49 +71,11 @@ resource "aws_instance" "jenkins-worker-oregon" {
     aws_main_route_table_association.set-worker-default-rt-assoc, aws_instance.jenkins-master
   ]
 
-  #Jenkins Master Provisioner:
+  #Jenkins Provisioner:
   provisioner "local-exec" {
     command = <<EOF
 aws --profile ${var.profile} ec2 wait instance-status-ok --region ${var.region_worker} --instance-ids ${self.id}
 ansible-playbook --extra-vars 'passed_in_hosts=tag_Name_${self.tags.Name} master_ip=${aws_instance.jenkins-master.private_ip} worker_ip=${self.private_ip}' ansible_templates/install_jenkins_worker.yml
 EOF
   }
-
-  # provisioner "remote-exec" {
-  #   when = destroy
-  #   inline = [
-  #     "java -jar /home/ec2-user/jenkins-cli.jar -auth @/home/ec2-user/jenkins_auth -s http://${aws_instance.jenkins-master.private_ip}:8080 delete-node ${self.private_ip}"
-  #   ]
-  #   connection {
-  #     type        = "ssh"
-  #     user        = "ec2-user"
-  #     private_key = file("~/.ssh/id_rsa")
-  #     host        = self.public_ip
-  #   }
-  # }
 }
-
-# resource "null_resource" "jenkins-worker-oregon" {
-
-#   triggers = {
-#     jenkins_master_private_ip = aws_instance.jenkins-master.private_ip
-#     jenkins_worker_oregon_private_ips = aws_instance.jenkins-worker-oregon
-#   }
-#   for_each = { 
-#     jenkins_worker_oregon_private_ip = self.trigger.jenkins_worker_oregon_private_ips 
-#   }
-
-#   provisioner "remote-exec" {
-#     # when = destroy
-#     commands = 
-#     inline = [
-#       "java -jar /home/ec2-user/jenkins-cli.jar -auth @/home/ec2-user/jenkins_auth -s http://${self.trigger.jenkins_master_private_ip}:8080 delete-node ${each.jenkins_worker_oregon_private_ip}"
-#     ]
-#     connection {
-#       type        = "ssh"
-#       user        = "ec2-user"
-#       private_key = file("~/.ssh/id_rsa")
-#       host        = each.jenkins_worker_oregon_private_ip
-#     }
-#   }
-# }
