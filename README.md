@@ -31,12 +31,12 @@ Ensure there is a proper `ansible.cfg` file in the same directory as this code. 
     - create **Route Table** (`rtb`) resources 
 - create the **security groups** (`sg`) resources
 - create the VM resources (`ec2` **instances**)
-    - get the AMI ID using API form Systems Manager (SSM) 
-    - Deploying Key Pairs for Application Nodes
-    - Deploying Jenkins Master and Worker Instances
+    - get the AMI ID using API from Systems Manager (SSM) 
+    - Deploy Key Pairs for Application Nodes
+    - Deploy Jenkins Master and Worker Instances
     - create outputs for the IP address of the created VMs resources (`ec2`)
         
-- use ANSIBLE ti install services on the Jenkins nodes
+- use ANSIBLE to install services on the Jenkins nodes
 - create an **Application Load Balancer (ALB)** and Routing Traffic to EC2 App (Jenkins) Node
     - add the load balancer with `aws_lb` resource
     - add the target group with `aws_lb_target_group` resource
